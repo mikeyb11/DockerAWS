@@ -10,4 +10,4 @@ RUN apt-get install -y git
 #RUN sudo docker pull java:7
 
 
-RUN echo "#HELLO" >> /etc/environment
+RUN sed '/\$\/i #HELLO"' >> /etc/environment
