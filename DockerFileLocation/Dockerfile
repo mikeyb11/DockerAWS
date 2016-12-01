@@ -2,7 +2,7 @@
 FROM ubuntu:16.04
 MAINTAINER MikeyB
 
-CWD /bin/bash
+CMD /bin/bash
 
 RUN apt-get update -y
 RUN apt-get install -y git
