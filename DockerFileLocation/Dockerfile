@@ -6,9 +6,16 @@ CMD /bin/bash
 
 RUN apt-get update -y
 RUN apt-get install -y git
+RUN apt-get install -y wget
 
 #RUN git clone https://github.com/mikeyb11/DockerAWS.git
 
-RUN apt-get install -y oracle-java7-installer
+RUN  wget --no-check-certificate --no-cookies --header \
+     "Cookie: oraclelicense=accept-securebackup-cookie" \
+     http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.tar.gz
+     
+#RUN tar -zxvf jdk-8u111-linux-x64.tar.gz
 
-RUN java -version
+#RUN cp 
+
+#RUN java -version
