@@ -10,7 +10,7 @@ RUN apt-get install -y wget
 
 #RUN git clone https://github.com/mikeyb11/DockerAWS.git
      
-#RUN tar -zxvf jdk-8u111-linux-x64.tar.gz
+#RUN tar -zxvf /home/ubuntu/DockerAWS/java.tar.gz
 
 #RUN cp jdk-8u111
 
