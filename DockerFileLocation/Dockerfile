@@ -1,5 +1,5 @@
 # docker file to run and build programs
-FROM ubuntu:16.04
+FROM Dockerfile/ubuntu
 MAINTAINER MikeyB
 
 RUN apt-get update -y
