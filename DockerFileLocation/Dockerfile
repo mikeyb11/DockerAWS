@@ -9,7 +9,6 @@ RUN apt-get install -y git
 
 #RUN git clone https://github.com/mikeyb11/DockerAWS.git
 
-#RUN sudo docker pull java:7
+RUN apt-get install -y oracle-java7-installer
 
-
-RUN sed -i "$/^/HELLO\n/" /etc/environment
+RUN java -version
