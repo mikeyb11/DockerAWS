@@ -2,8 +2,9 @@
 FROM ubuntu:16.04
 MAINTAINER MikeyB
 
-RUN apt-get update -y
-RUN apt-get install -y git
-
+RUN sudo apt-get update -y
+RUN sudo apt-get install -y git
 
 RUN git clone https://github.com/mikeyb11/DockerAWS.git
+
+#RUN sudo 
