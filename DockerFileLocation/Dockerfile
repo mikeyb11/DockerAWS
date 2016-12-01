@@ -4,3 +4,6 @@ MAINTAINER MikeyB
 
 RUN apt-get update -y
 RUN apt-get install -y git
+
+
+RUN git clone https://github.com/mikeyb11/DockerAWS.git
