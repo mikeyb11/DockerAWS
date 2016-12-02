@@ -9,6 +9,8 @@ RUN apt-get update -y
 RUN apt-get install -y git
 RUN apt-get install -y wget
 
+RUN apt-get install -f
+
 #RUN git clone https://github.com/mikeyb11/DockerAWS.git
 
 WORKDIR /opt
