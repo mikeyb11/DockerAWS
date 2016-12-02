@@ -3,7 +3,7 @@
 FROM ubuntu:16.04
 MAINTAINER MikeyB
 
-CMD /bin/bash
+#CMD /bin/bash
 
 RUN apt-get update -y
 RUN apt-get install -y git
