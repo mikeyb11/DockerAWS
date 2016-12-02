@@ -8,11 +8,11 @@ RUN apt-get install -y wget
 
 RUN apt-get install -f
 
-#WORKDIR /home/ubuntu
+WORKDIR /home/ubuntu
 
 RUN git clone https://github.com/mikeyb11/DockerAWS.git
 
-#WORKDIR /opt/
+WORKDIR /opt/
 
 RUN  wget --no-cookies \
      --no-check-certificate \
