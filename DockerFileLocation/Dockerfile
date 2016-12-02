@@ -11,6 +11,8 @@ RUN apt-get install -y wget
 
 #RUN git clone https://github.com/mikeyb11/DockerAWS.git
 
+WORKDIR /opt
+
 RUN  wget --no-cookies \
      --no-check-certificate \
      --header "Cookie: oraclelicense=accept-securebackup-cookie" \
@@ -18,7 +20,6 @@ RUN  wget --no-cookies \
 
 RUN tar zxvf jdk-7u55-linux-x64.tar.gz
 
-RUN cp jdk1.7.0_55 /opt
 RUN update-alternatives --install /usr/bin/java java /opt/jdk1.7.0_55/bin/java 100
 RUN update-alternatives --install /usr/bin/javac javac /opt/jdk1.7.0_55/bin/javac 100
 
