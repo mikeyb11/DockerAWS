@@ -1,5 +1,6 @@
 # docker file to run and build programs
-FROM ubuntu:ubuntu #16.04
+FROM ubuntu:ubuntu 
+#16.04
 MAINTAINER MikeyB
 
 #CMD /bin/bash
