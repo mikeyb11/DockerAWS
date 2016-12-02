@@ -12,12 +12,16 @@ RUN apt-get install -f
 
 #RUN git clone https://github.com/mikeyb11/DockerAWS.git
 
-WORKDIR /opt
+#WORKDIR /opt
 
 RUN  wget --no-cookies \
      --no-check-certificate \
      --header "Cookie: oraclelicense=accept-securebackup-cookie" \
      "http://download.oracle.com/otn-pub/java/jdk/7u55-b13/jdk-7u55-linux-x64.tar.gz"
+
+RUN cp jdk-7u55-linux-x64.tar.gz /opt/
+
+WORKDIR /opt/
 
 RUN tar zxvf jdk-7u55-linux-x64.tar.gz
 
