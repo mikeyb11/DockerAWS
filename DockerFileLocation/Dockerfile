@@ -13,7 +13,7 @@ RUN apt-get install -f
 
 #RUN git clone https://github.com/mikeyb11/DockerAWS.git
 
-WORKDIR /opt
+#WORKDIR /opt
 
 RUN  wget --no-cookies \
      --no-check-certificate \
