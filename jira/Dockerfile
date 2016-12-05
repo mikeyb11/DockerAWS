@@ -22,7 +22,7 @@ RUN update-alternatives --install /usr/bin/javac javac /opt/jdk1.7.0_55/bin/java
 
 RUN wget "https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-7.2.3-x64.bin"
 RUN chmod a+x atlassian-jira-software-7.2.3-x64.bin
-COPY response.varfile /opt/
+#COPY response.varfile /opt/
 
 RUN /opt/atlassian-jira-software-7.2.3-x64.bin -q -varfile /opt/response.varfile
 EXPOSE 8081
