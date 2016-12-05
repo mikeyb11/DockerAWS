@@ -1,5 +1,5 @@
 #Response file for JIRA 7.2.3
-rmiPort$Long=8005
+rmiPort$Long=8081
 app.install.service$Boolean=true
 existingInstallationDir=/opt/JIRA
 sys.confirmedUpdateInstallationString=false
