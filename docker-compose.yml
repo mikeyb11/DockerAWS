@@ -4,6 +4,6 @@ jenkins:
 	build: ./jenkins
 	ports: "8080:8080"
 	
-jira:
-	build: ./jira
-	ports: "8081:8081"
+#jira:
+#	build: ./jira
+#	ports: "8081:8081"
