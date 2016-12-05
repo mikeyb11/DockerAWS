@@ -25,5 +25,5 @@ RUN apt-get update
 RUN apt-get install -y jenkins
 RUN apt-get update
 
-EXPOSE 8081
+EXPOSE 8080
 ENTRYPOINT service jenkins start && bash
