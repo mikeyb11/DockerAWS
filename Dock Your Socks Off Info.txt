@@ -1,0 +1,236 @@
+Dock Your Socks Off
+IP: 52.212.188.209
+Username: ubuntu
+
+Installed jenkins with: sudo docker run -p 8080:8080 -p 50000:50000 -d jenkins
+stored in [given container name] (happy_mirzakhani) found using: sudo docker ps 
+	so: sudo docker exec -ti [given container name] bash
+cat /var/lib/jenkins/secrets/initialAdminPassword
+Jenkins password: [password on screen]
+go to IP:8080 and enter [password on screen] (1343f376dcaf4f12b018cef71d83e5d2)
+jenkins:	- user:		admin
+			- password: 
+
+Link MYSQL AND Wordpress (PHP)
+GET MYSQL by searching: "sudo docker search mysql" and pulling: "sudo docker pull [mysql version]
+(marvambass/mysql)
+GET WORDPRESS/PHP: "sudo docker search wordpress" pull: "sudo docker pull [wordpress version]
+(centurylink/wordpress
+#Create volume and name it (data-container-mysql)
+sudo docker run -d -v /var/lib/mysql --name data-container-mysql mysql echo data-only container for mysql
+
+#Make container and name it?
+sudo docker run --volumes-from data-container-mysql -e MYSQL_ROOT_PASSWORD="root" --name mymysql -d mysql
+
+#Make the link and make it available on a specified port and name wordpress container
+sudo docker run --name mywordpress --link=mymysql:mysql -p 8082:80 -d wordpress
+
+AUTOMATE IT
+Dockerfile in different directories for both
+
+
+
+mysql: - volumes: mysql-volumes
+		container: mysqldocker
+		MYSQL_ROOT_PASSWORD=root
+		
+wordpress:	- container: wordpressdocker
+
+
+
+FROM ubuntu:14.04
+USER root
+MAINTAINER ubuntu
+RUN apt-get update
+RUN apt-get install -y wget
+RUN apt-get install -y default-jre
+RUN apt-get install -y default-jdk
+RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+RUN sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+RUN sudo apt-get update
+RUN sudo apt-get install -y jenkins
+RUN sudo apt-get update
+EXPOSE 8080
+ENTRYPOINT service jenkins start && bash
+
+(after running, do sudo docker run -tid -p 8080:8080 jenkins_dharam (bash)
+sudo docker exec -ti [container name] (bash)
+
+
+
+JIRA------------------------------
+FROM ubuntu:14.04
+USER root
+MAINTAINER ubuntu
+RUN apt-get update
+WORKDIR /opt/
+RUN apt-get install -y wget
+RUN apt-get install -y default-jre
+RUN apt-get install -y default-jdk
+RUN wget https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-7.2.3-x64.bin
+RUN chmod a+x atlassian-jira-software-7.2.3-x64.bin
+COPY response.varfile /opt/
+RUN /opt/atlassian-jira-software-7.2.3-x64.bin -q -varfile /opt/response.varfile
+EXPOSE 8081
+ENTRYPOINT service jira start && bash
+
+
+#install4j response file for JIRA 7.2.3
+#Tue Oct 11 11:22:39 CDT 2016
+rmiPort$Long=8005
+app.install.service$Boolean=true
+existingInstallationDir=/opt/JIRA
+sys.confirmedUpdateInstallationString=false
+sys.languageId=en
+sys.installationDir=/opt/atlassian/jira
+executeLauncherAction$Boolean=true
+httpPort$Long=8081
+portChoice=custom
+
+
+https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-7.2.3-x64.bin
+
+
+
+jordan harris 85 urban code
+
+
+
+/usr/lib/nexus-oss/nexus-2.1.2/conf/nexus.properties
+nexus-work=/srv/nexus/main-repo
+
+
+
+NEXUS
+http://download.sonatype.com/nexus/oss/nexus-2.12.0-01-bundle.tar.gz
+
+FROM ubuntu:14.04
+USER root
+MAINTAINER ubuntu
+RUN apt-get update
+WORKDIR /opt/
+RUN apt-get install -y wget
+RUN apt-get install -y default-jdk
+RUN apt-get install -y default-jre
+RUN groupadd nexus
+RUN useradd -g nexus nexus
+RUN wget http://download.sonatype.com/nexus/oss/nexus-2.12.0-01-bundle.tar.gz
+RUN mkdir /usr/lib/nexus-oss/
+WORKDIR /usr/lib/nexus-oss/
+RUN tar xzvf /opt/nexus-2.12.0-01-bundle.tar.gz nexus-2.12.0-01/
+RUN ln -s nexus-2.12.0-01/ nexus
+RUN mkdir /srv/nexus
+RUN mkdir /srv/nexus/main-repo
+RUN chown nexus:nexus /srv/nexus/main-repo
+RUN sed -i '/nexus-work=/c\nexus-work=/srv/nexus/main-repo/' /usr/lib/nexus-oss/nexus-2.12.0-01/conf/nexus.properties
+RUN sed -i '/application-port=/c\application-port=8082' /usr/lib/nexus-oss/nexus-2.12.0-01/conf/nexus.properties
+RUN sed -i '/application-host=/c\application-host=52.211.92.127' /usr/lib/nexus-oss/nexus-2.12.0-01/conf/nexus.properties
+RUN cp /usr/lib/nexus-oss/nexus/bin/nexus /etc/init.d/nexus
+RUN sed -i '/NEXUS_HOME=\"..\"/c\NEXUS_HOME=/usr/lib/nexus-oss/nexus' /etc/init.d/nexus
+RUN sed -i '/PIDDIR=\".\"/c\PIDDIR=/var/run' /etc/init.d/nexus
+RUN sed -i '/#RUN_AS_USER=/c\RUN_AS_USER=nexus' /etc/init.d/nexus
+RUN update-rc.d nexus defaults
+EXPOSE 8082
+
+
+FROM ubuntu:14.04
+USER root
+MAINTAINER ubuntu
+RUN apt-get update
+WORKDIR /opt/
+RUN apt-get install -y wget
+RUN apt-get install -y default-jdk
+RUN apt-get install -y default-jre
+RUN wget https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-3.0.2-02-unix.tar.gz
+RUN tar -zxvf nexus-3.0.2-02-unix.tar.gz
+RUN sed -i '/application-port=/c\application-port=8082' /opt/nexus-2.12.0-01/conf/nexus.properties
+RUN sed -i '/nexus-work=/c\nexus-work=/opt/' /opt/nexus-2.12.0-01/conf/nexus.properties
+RUN echo "Y Y Y Y Y Y " | adduser --no-create-home --disabled-login --disabled-password nexus
+RUN sed -i '/#RUN_AS_USER=/c\RUN_AS_USER=nexus' /opt/nexus-2.12.0-01/bin/nexus
+RUN sed -i '/NEXUS_HOME=\"..\"/c\NEXUS_HOME=/opt/nexus-2.12.0-01/' /opt/nexus-2.12.0-01/bin/nexus
+WORKDIR /opt/nexus-2.12.0-01/bin
+RUN chmod a+x nexus
+RUN chown -R nexus:nexus /opt/nexus-2.12.0-01/
+USER nexus
+RUN ./nexus start
+EXPOSE 8082
+ENTRYPOINT /opt/nexus-2.12.0-01/bin/nexus start && bash
+
+
+
+(after running, do sudo docker run -tid -p 8080:8080 jenkins_dharam (bash)
+sudo docker exec -ti [container name] (bash)
+
+
+FROM ubuntu14.04
+USER root
+MAINTAINER ubuntu
+WORKDIR /opt/
+RUN apt-get update
+RUN apt-get install -y wget
+RUN apt-get install -y default-jdk
+RUN apt-get install -y default-jre
+RUN wget https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-3.0.2-02-unix.tar.gz
+RUN apt-get install -y default-jre
+RUN tar -zxvf nexus-3.0.2-02-unix.tar.gz
+RUN chmod a+x /opt/nexus-3.0.2-02/bin/nexus
+EXPOSE 8082:8081
+ENTRYPOINT /opt/nexus-3.0.2-02/bin/nexus start && bash
+
+(sudo docker run -tid -p 8082:8081 nexus_dharam bash
+ sudo docker exec -ti [container name] bash)
+
+ZABBIX--------------------------------------
+
+FROM ubuntu:14.04
+USER root
+MAINTAINER ubuntu
+RUN apt-get update
+RUN apt-get install -y wget
+RUN wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-1+trusty_all.deb
+RUN dpkg -i zabbix-release_3.0-1+trusty_all.deb
+RUN apt-get install -y zabbix-agent
+RUN sed -i '/Server=127/c\Server=52.212.188.209' /etc/zabbix/zabbix_agentd.conf
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apache2 php5 php5-cli php5-common php5-mysql mysql-server
+RUN sed -i '/date.timezone =/c\date.timezone = UTC' /etc/php5/apache2/php.ini
+RUN wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-1+trusty_all.deb
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y zabbix-server-mysql zabbix-frontend-php
+RUN service mysql start\
+&& mysql -u root -e "create user 'zabbix';"\
+&& mysql -u root -e "create database zabbixdb;"\
+&& mysql -u root -e "grant all privileges on zabbixdb.* to 'zabbix';"\
+&& mysql -u root -e "flush privileges;"
+WORKDIR /usr/share/doc/zabbix-server-mysql
+RUN service mysql start && zcat create.sql.gz | mysql -u root zabbixdb
+RUN sed -i '/DBHost=/c\DBHost=localhost' /etc/zabbix/zabbix_server.conf
+RUN sed -i '/DBName=zabbix/c\DBName=zabbixdb' /etc/zabbix/zabbix_server.conf
+EXPOSE 8083:80
+ENTRYPOINT service apache2 restart && service zabbix-server restart && service zabbix-agent restart && bash
+
+
+IP: 52.51.212.106
+
+
+DOCKERCOMPOSE
+
+version: "2"
+  
+services:
+  jenkins:
+    build: /home/ubuntu/dockerProject/jenkinsContainer/
+    ports:
+      - "8080:8080"
+    tty: true
+
+  jira:
+    build: /home/ubuntu/dockerProject/jiraContainer/
+    ports:
+      - "8081:8081"
+    tty: true
+
+
+
+
+
+
