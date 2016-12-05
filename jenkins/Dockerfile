@@ -1,5 +1,5 @@
 # jenkins dockerfile
-FROM ubuntu
+FROM ubuntu:16.04
 MAINTAINER MikeyB
 
 RUN apt-get update
