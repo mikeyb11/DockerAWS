@@ -24,6 +24,6 @@ RUN wget "https://www.atlassian.com/software/jira/downloads/binary/atlassian-jir
 RUN chmod a+x atlassian-jira-software-7.2.3-x64.bin
 COPY response.varfile /opt/
 
-RUN /opt/atlassian-jira-software-7.2.3-x64.bin -q -varfile /opt/response.varfile
+#RUN /opt/atlassian-jira-software-7.2.3-x64.bin -q -varfile /opt/response.varfile
 EXPOSE 8081
 ENTRYPOINT service jira start && bash
