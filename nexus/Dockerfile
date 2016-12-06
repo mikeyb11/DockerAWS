@@ -20,16 +20,8 @@ RUN update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_111/bin/java 
 RUN update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_111/bin/javac 100
 
 RUN wget https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-3.0.2-02-unix.tar.gz
+RUN apt-get install -y default-jre
 RUN tar -zxvf nexus-3.0.2-02-unix.tar.gz
-RUN sed -i '/application-port=/c\application-port=8082' /opt/nexus-3.0.2-02/conf/nexus.properties
-RUN sed -i '/nexus-work=/c\nexus-work=/opt/' /opt/nexus-3.0.2-02/conf/nexus.properties
-RUN echo "Y Y Y Y Y Y " | adduser --no-create-home --disabled-login --disabled-password nexus
-RUN sed -i '/#RUN_AS_USER=/c\RUN_AS_USER=nexus' /opt/nexus-3.0.2-02/bin/nexus
-RUN sed -i '/NEXUS_HOME=\"..\"/c\NEXUS_HOME=/opt/nexus-3.0.2-02/' /opt/nexus-3.0.2-02/bin/nexus
-WORKDIR /opt/nexus-3.0.2-02/bin
-RUN chmod a+x nexus
-RUN chown -R nexus:nexus /opt/nexus-3.0.2-02/
-USER nexus
-RUN ./nexus start
-EXPOSE 8082
+RUN chmod a+x /opt/nexus-3.0.2-02/bin/nexus
+EXPOSE 8082:8081
 ENTRYPOINT /opt/nexus-3.0.2-02/bin/nexus start && bash
