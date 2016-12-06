@@ -21,7 +21,7 @@ RUN update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_111/bin/jav
 
 RUN wget https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-3.0.2-02-unix.tar.gz
 RUN tar -zxvf nexus-3.0.2-02-unix.tar.gz
-RUN sed -i '/application-port=/c\application-port=8082' /opt/nexus-2.12.0-01/conf/nexus.properties
+RUN sed -i '/application-port=/c\application-port=8082' /opt/nexus-3.0.2-02/conf/nexus.properties
 RUN sed -i '/nexus-work=/c\nexus-work=/opt/' /opt/nexus-3.0.2-02/conf/nexus.properties
 RUN echo "Y Y Y Y Y Y " | adduser --no-create-home --disabled-login --disabled-password nexus
 RUN sed -i '/#RUN_AS_USER=/c\RUN_AS_USER=nexus' /opt/nexus-3.0.2-02/bin/nexus
