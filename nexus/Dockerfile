@@ -24,7 +24,7 @@ RUN wget -O /tmp/nexus-latest-bundle.tar.gz http://download.sonatype.com/nexus/o
 RUN tar xzvf /tmp/nexus-latest-bundle.tar.gz -C /opt/sonatype-nexus --strip-components=1
 RUN useradd --user-group --system --home-dir /opt/sonatype-nexus nexus
 
-ADD nexus.xml /opt/sonatype-work/nexus/conf/nexus.xml
+#ADD nexus.xml /opt/sonatype-work/nexus/conf/nexus.xml
 
 RUN chown -R nexus:nexus /opt/sonatype-work /opt/sonatype-nexus
 
