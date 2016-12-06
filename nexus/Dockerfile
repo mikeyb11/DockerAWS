@@ -25,7 +25,7 @@ RUN tar -zxvf nexus-3.0.2-02-unix.tar.gz
 #RUN sed -i '/nexus-work=/c\nexus-work=/opt/' /opt/nexus-3.0.2-02/conf/nexus.properties
 RUN echo "Y Y Y Y Y Y " | adduser --no-create-home --disabled-login --disabled-password nexus
 RUN sed -i '/#RUN_AS_USER=/c\RUN_AS_USER=nexus' /opt/nexus-3.0.2-02/bin/nexus
-RUN sed -i '/NEXUS_HOME=\"..\"/c\NEXUS_HOME=/opt/nexus-3.0.2-02/' /opt/nexus-2.12.0-01/bin/nexus
+RUN sed -i '/NEXUS_HOME=\"..\"/c\NEXUS_HOME=/opt/nexus-3.0.2-02/' /opt/nexus-3.0.2-02/bin/nexus
 WORKDIR /opt/nexus-3.0.2-02/bin
 RUN chmod a+x nexus
 RUN chown -R nexus:nexus /opt/nexus-3.0.2-02/
