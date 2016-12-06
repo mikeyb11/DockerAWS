@@ -1,22 +1,22 @@
 version: '2'
 
 services:
-	#java:
-		#build: ./java
+#java:
+#build: ./java
 
-	#maven:
-		#build: ./maven
+#maven:
+#build: ./maven
 
-	jenkins:
-		build: ./jenkins
-		ports: 
-			- "8080:8080"
-		#links:
-			#- java
+jenkins:
+build: ./jenkins
+ports: 
+- "8080:8080"
+#links:
+#- java
 
-	#jira:
-		#build: ./jira
-		#ports: 
-			- "8081:8081"
-		#links:
-			#- java
+#jira:
+#build: ./jira
+#ports: 
+- "8081:8081"
+#links:
+#- java
