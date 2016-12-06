@@ -1,6 +1,5 @@
 version: '2'
-volumes:
- project:
+
 services:
  #java:
    #build: ./java
@@ -15,8 +14,6 @@ services:
    #depends_on:
      #- java
    tty: true
-   volumes:
-    - project: /opt/jenkins/:/var/lib/jenkins/
 
   #jira:
    #build: ./jira
