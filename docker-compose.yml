@@ -8,7 +8,6 @@ services:
 #build: ./maven
 
 jenkins:
-image: jenkis
 build: /home/ubuntu/DockerAWS/jenkins/
 ports: 
 - "8080:8080"
