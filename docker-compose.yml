@@ -1,23 +1,32 @@
 #version: '2'
 
 #services:
- #java:
-   #build: ./java
+ java:
+  build: ./java
+  
+ maven:
+  build: ./maven
+  
+ jenkins:
+  build: ./jenkins/
+  ports: 
+    - "8080:8080"
+  links:
+    - java
+  tty: true
 
-  #maven:
-   #build: ./maven
-
-  jenkins:
-   build: ./jenkins/
-   ports: 
-     - "8080:8080"
-   #depends_on:
-     #- java
-   tty: true
-
-  #jira:
-   #build: ./jira
-   #ports: 
-     #- "8081:8081"
-   #depends_on:
-     #- java
+ jira:
+  build: ./jira
+  ports: 
+   - "8081:8081"
+  links:
+    - java
+  tty: true
+	 
+ nexus:
+  build: ./nexus
+  ports: 
+   - "8082:8081" 
+  links:
+   - java
+  tty: true
