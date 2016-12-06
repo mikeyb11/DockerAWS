@@ -1,5 +1,5 @@
 # nexus dockerfile
-FROM ubuntu:16.04
+FROM ubuntu
 USER root
 MAINTAINER MikeyB
 
