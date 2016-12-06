@@ -19,19 +19,22 @@ RUN tar zxvf jdk-8u111-linux-x64.tar.gz
 RUN update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_111/bin/java 100
 RUN update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_111/bin/javac 100
 
-RUN mkdir -p /opt/sonatype-nexus /opt/sonatype-work
-RUN wget -O /tmp/nexus-latest-bundle.tar.gz http://download.sonatype.com/nexus/oss/nexus-2.13.0-01-bundle.tar.gz
-RUN tar xzvf /tmp/nexus-latest-bundle.tar.gz -C /opt/sonatype-nexus --strip-components=1
-RUN useradd --user-group --system --home-dir /opt/sonatype-nexus nexus
-
-ADD nexus.xml /opt/sonatype-work/nexus/conf/nexus.xml
-
-RUN chown -R nexus:nexus /opt/sonatype-work /opt/sonatype-nexus
-
-ENV NEXUS_WEBAPP_CONTEXT_PATH /nexus
-RUN echo "#!/bin/bash" > /opt/start-nexus.sh
-RUN echo "su -c \"/opt/sonatype-nexus/bin/nexus console\" - nexus" >> /opt/start-nexus.sh
-RUN chmod +x /opt/start-nexus.sh
-
-CMD ["/opt/start-nexus.sh"]
+RUN groupadd nexus
+RUN useradd -g nexus nexus
+RUN wget http://download.sonatype.com/nexus/oss/nexus-2.12.0-01-bundle.tar.gz
+RUN mkdir /usr/lib/nexus-oss/
+WORKDIR /usr/lib/nexus-oss/
+RUN tar xzvf /opt/nexus-2.12.0-01-bundle.tar.gz nexus-2.12.0-01/
+RUN ln -s nexus-2.12.0-01/ nexus
+RUN mkdir /srv/nexus
+RUN mkdir /srv/nexus/main-repo
+RUN chown nexus:nexus /srv/nexus/main-repo
+RUN sed -i '/nexus-work=/c\nexus-work=/srv/nexus/main-repo/' /usr/lib/nexus-oss/nexus-2.12.0-01/conf/nexus.properties
+RUN sed -i '/application-port=/c\application-port=8082' /usr/lib/nexus-oss/nexus-2.12.0-01/conf/nexus.properties
+RUN sed -i '/application-host=/c\application-host=52.211.92.127' /usr/lib/nexus-oss/nexus-2.12.0-01/conf/nexus.properties
+RUN cp /usr/lib/nexus-oss/nexus/bin/nexus /etc/init.d/nexus
+RUN sed -i '/NEXUS_HOME=\"..\"/c\NEXUS_HOME=/usr/lib/nexus-oss/nexus' /etc/init.d/nexus
+RUN sed -i '/PIDDIR=\".\"/c\PIDDIR=/var/run' /etc/init.d/nexus
+RUN sed -i '/#RUN_AS_USER=/c\RUN_AS_USER=nexus' /etc/init.d/nexus
+RUN update-rc.d nexus defaults
 EXPOSE 8082
