@@ -33,7 +33,6 @@ RUN echo "#!/bin/bash" > /opt/start-nexus.sh
 RUN echo "su -c \"/opt/sonatype-nexus/bin/nexus console\" - nexus" >> /opt/start-nexus.sh
 RUN chmod +x /opt/start-nexus.sh
 
+EXPOSE 8082:8081
 CMD ["/opt/start-nexus.sh"]
-EXPOSE 8082
-
 #ENTRYPOINT /opt/nexus-2.13.0-01/bin/nexus start && bash
