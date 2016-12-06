@@ -9,11 +9,12 @@ services:
 
 jenkins:
 image: jenkis
-build: ./jenkins
+build: /home/ubuntu/DockerAWS/jenkins/
 ports: 
 - "8080:8080"
 #links:
 #- java
+tty: true
 
 #jira:
 #build: ./jira
