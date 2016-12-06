@@ -1,23 +1,23 @@
 version: '2'
 
 services:
-#java:
-#build: ./java
+  #java:
+    #build: ./java
 
-#maven:
-#build: ./maven
+  #maven:
+    #build: ./maven
 
-jenkins:
-build: /home/ubuntu/DockerAWS/jenkins/
-ports: 
-- "8080:8080"
-#links:
-#- java
-tty: true
+  jenkins:
+  build: /home/ubuntu/DockerAWS/jenkins/
+  ports: 
+    - "8080:8080"
+  #links:
+    #- java
+  tty: true
 
-#jira:
-#build: ./jira
-#ports: 
-#- "8081:8081"
-#links:
-#- java
+  #jira:
+  #build: ./jira
+  #ports: 
+    #- "8081:8081"
+  #links:
+    #- java
