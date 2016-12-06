@@ -19,17 +19,19 @@ RUN tar zxvf jdk-8u111-linux-x64.tar.gz
 RUN update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_111/bin/java 100
 RUN update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_111/bin/javac 100
 
-RUN wget http://download.sonatype.com/nexus/3/latest-unix.tar.gz
-RUN tar -zxvf latest-unix.tar.gz
-RUN sed -i '/application-port=/c\application-port=8082' /opt/latest/conf/nexus.properties
-RUN sed -i '/nexus-work=/c\nexus-work=/opt/' /opt/latest/conf/nexus.properties
-RUN echo "Y Y Y Y Y Y " | adduser --no-create-home --disabled-login --disabled-password nexus
-RUN sed -i '/#RUN_AS_USER=/c\RUN_AS_USER=nexus' /opt/latest/bin/nexus
-RUN sed -i '/NEXUS_HOME=\"..\"/c\NEXUS_HOME=/opt/latest/' /opt/latest/bin/nexus
-WORKDIR /opt/latest/bin
-RUN chmod a+x nexus
-RUN chown -R nexus:nexus /opt/latest/
-USER nexus
-RUN ./nexus start
+RUN mkdir -p /opt/sonatype-nexus /opt/sonatype-work
+RUN wget -O /tmp/nexus-latest-bundle.tar.gz http://download.sonatype.com/nexus/oss/nexus-2.13.0-01-bundle.tar.gz
+RUN tar xzvf /tmp/nexus-latest-bundle.tar.gz -C /opt/sonatype-nexus --strip-components=1
+RUN useradd --user-group --system --home-dir /opt/sonatype-nexus nexus
+
+ADD nexus.xml /opt/sonatype-work/nexus/conf/nexus.xml
+
+RUN chown -R nexus:nexus /opt/sonatype-work /opt/sonatype-nexus
+
+ENV NEXUS_WEBAPP_CONTEXT_PATH /nexus
+RUN echo "#!/bin/bash" > /opt/start-nexus.sh
+RUN echo "su -c \"/opt/sonatype-nexus/bin/nexus console\" - nexus" >> /opt/start-nexus.sh
+RUN chmod +x /opt/start-nexus.sh
+
+CMD ["/opt/start-nexus.sh"]
 EXPOSE 8082
-ENTRYPOINT /opt/latest/bin/nexus start && bash
