@@ -19,19 +19,10 @@ RUN tar zxvf jdk-8u111-linux-x64.tar.gz
 RUN update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_111/bin/java 100
 RUN update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_111/bin/javac 100
 
-RUN mkdir -p /opt/sonatype-nexus /opt/sonatype-work
-RUN wget -O /tmp/nexus-latest-bundle.tar.gz http://download.sonatype.com/nexus/oss/nexus-2.13.0-01-bundle.tar.gz
-RUN tar xzvf /tmp/nexus-latest-bundle.tar.gz -C /opt/sonatype-nexus --strip-components=1
-RUN useradd --user-group --system --home-dir /opt/sonatype-nexus nexus
-
-#ADD nexus.xml /opt/sonatype-work/nexus/conf/nexus.xml
-
-RUN chown -R nexus:nexus /opt/sonatype-work /opt/sonatype-nexus
-
-ENV NEXUS_WEBAPP_CONTEXT_PATH /nexus
-RUN echo "#!/bin/bash" > /opt/start-nexus.sh
-RUN echo "su -c \"/opt/sonatype-nexus/bin/nexus console\" - nexus" >> /opt/start-nexus.sh
-RUN chmod +x /opt/start-nexus.sh
-
-CMD ["/opt/start-nexus.sh"]
-EXPOSE 8081
+RUN wget https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-3.0.2-02-unix.tar.gz
+RUN apt-get install -y default-jre
+RUN tar -zxvf nexus-3.0.2-02-unix.tar.gz
+RUN chmod a+x /opt/nexus-3.0.2-02/bin/nexus
+RUN ./start-nexus.sh
+EXPOSE 8082:8081
+ENTRYPOINT /opt/nexus-3.0.2-02/bin/nexus start && bash
