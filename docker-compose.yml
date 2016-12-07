@@ -27,10 +27,10 @@
 #    - java
   tty: true
 #	 
-# nexus:
-#  build: ./nexus
-#  ports: 
-#   - "8082:8081" 
+ nexus:
+  build: ./nexus
+  ports: 
+   - "8082:8081" 
 #  links:
 #   - java8
-#  tty: true
+  tty: true
