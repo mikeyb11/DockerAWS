@@ -14,7 +14,7 @@ RUN apt-get install -y zabbix-agent
 RUN sed -i '/Server=127/c\Server=52.212.188.209' /etc/zabbix/zabbix_agentd.conf
 
 RUN apt-get update
-RUN apt-get install -y php
+RUN apt-get install -y php5
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apache2 php5 php5-cli php5-common php5-mysql mysql-server
 
