@@ -23,7 +23,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php7.0-mysql php7.0-curl p
 
 RUN sed -i '/date.timezone =/c\date.timezone = Europe/London' /etc/php/7.0/apache2/php.ini
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server zabbix-server-mysql zabbix-frontend-php
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server libmysqlclient18 zabbix-server-mysql zabbix-frontend-php
 
 RUN service mysql start\
 && mysql -u root -e "create user 'zabbix';"\
