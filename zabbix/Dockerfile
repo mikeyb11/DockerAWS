@@ -7,6 +7,12 @@ RUN apt-get update
 RUN apt-get install -y wget
 
 RUN apt-get install -y apache2
+
+RUN echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
+RUN echo "mysql-server mysql-server/root_password_again password root" | sudo debconf-set-selections
+
+RUN apt-get install -y mysql-server
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php7.0 libapache2-mod-php7.0
 
 RUN sed -i '/date.timezone =/c\date.timezone = Europe/London' /etc/php/7.0/apache2/php.ini
@@ -20,7 +26,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y zabbix-agent zabbix-server
 RUN service mysql start\
 && mysql -u root -e "create user 'zabbix';"\
 && mysql -u root -e "create database zabbixdb;"\
-&& mysql -u root -e "grant all privileges on zabbixdb.* to 'zabbix';"\
+&& mysql -u root -e "grant all privileges on zabbixdb.* to 'zabbix@localhost' IDENTIFED BY 'password';"\
 && mysql -u root -e "flush privileges;"
 
 WORKDIR /usr/share/doc/zabbix-server-mysql
