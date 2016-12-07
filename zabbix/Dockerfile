@@ -1,4 +1,4 @@
-# zabbix dockerfile
+o# zabbix dockerfile
 FROM ubuntu
 USER root
 MAINTAINER MikeyB
@@ -21,7 +21,7 @@ RUN apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php7.0
 
-RUN sed -i '/date.timezone =/c\date.timezone = UTC' /etc/php7/apache2/php.ini
+RUN sed -i '/date.timezone =/c\date.timezone = Europe/London' /etc/php/7.0/apache2/php.ini
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y zabbix-server-mysql zabbix-frontend-php
 
