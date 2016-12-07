@@ -1,9 +1,9 @@
 #version: '2'
 
 #services:
-# java7:
-#  build: ./java7
-#  tty: true
+ java7:
+  build: ./java7
+  tty: true
 #  
 #  java8:
 #  build: ./java8
@@ -18,8 +18,8 @@
   build: ./jenkins/
   ports: 
     - "8080:8080"
-#  links:
-#    - java7
+  links:
+    - java7
 #    - maven
   tty: true
 #
@@ -27,8 +27,8 @@
   build: ./jira
   ports: 
    - "8081:8081"
-#  links:
-#    - java7
+  links:
+    - java7
   tty: true
 #	 
 # nexus:
