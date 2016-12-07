@@ -4,9 +4,10 @@
  java7:
   build: ./java7
   tty: true
-#  
-#  java8:
-#  build: ./java8
+  
+  java8:
+   build: ./java8
+   tty: true
 #  
 # maven:
 #  build: ./maven
@@ -31,10 +32,10 @@
     - java7
   tty: true
 #	 
-# nexus:
-#  build: ./nexus
-#  ports: 
-#   - "8082:8081" 
-#  links:
-#   - java8
-#  tty: true
+ nexus:
+  build: ./nexus
+  ports: 
+   - "8082:8081" 
+  links:
+   - java8
+  tty: true
