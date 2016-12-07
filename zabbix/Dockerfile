@@ -35,6 +35,6 @@ RUN service mysql start && zcat create.sql.gz | mysql -u root zabbixdb
 RUN sed -i '/DBHost=/c\DBHost=localhost' /etc/zabbix/zabbix_server.conf
 RUN sed -i '/DBName=zabbix/c\DBName=zabbixdb' /etc/zabbix/zabbix_server.conf
 
-EXPOSE 8083:80
+EXPOSE 80:80
 
 ENTRYPOINT service apache2 restart && service zabbix-server restart && service zabbix-agent restart && bash
