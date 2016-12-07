@@ -15,7 +15,7 @@ RUN wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zab
 
 RUN dpkg -i zabbix-release_3.0-1+trusty_all.deb
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y zabbix-server-mysql zabbix-frontend-php
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y zabbix-agent zabbix-server-mysql zabbix-frontend-php
 
 RUN service mysql start\
 && mysql -u root -e "create user 'zabbix';"\
