@@ -1,4 +1,4 @@
-o# zabbix dockerfile
+# zabbix dockerfile
 FROM ubuntu
 USER root
 MAINTAINER MikeyB
