@@ -1,5 +1,5 @@
 # zabbix dockerfile
-FROM ubuntu:14.04
+FROM ubuntu
 USER root
 MAINTAINER MikeyB
 
