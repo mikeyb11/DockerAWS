@@ -25,6 +25,8 @@ RUN service apache2 restart
 
 RUN wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-1+trusty_all.deb
 
+RUN dpkg -i zabbix-release_3.0-1+trusty_all.deb
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server mysql-client libmysqlclient-dev libsnmp-dev zabbix-server-mysql zabbix-frontend-php
 
 RUN service mysql start\
