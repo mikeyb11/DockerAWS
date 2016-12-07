@@ -12,7 +12,7 @@ RUN sed -i '/Server=127/c\Server=52.212.188.209' /etc/zabbix/zabbix_agentd.conf
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apache2 php5 php5-cli php5-common php5-mysql mysql-server
 RUN sed -i '/date.timezone =/c\date.timezone = UTC' /etc/php5/apache2/php.ini
-RUN wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-1+trusty_all.deb
+#RUN wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-1+trusty_all.deb
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y zabbix-server-mysql zabbix-frontend-php
 RUN service mysql start\
 && mysql -u root -e "create user 'zabbix';"\
