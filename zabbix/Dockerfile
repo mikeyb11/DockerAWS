@@ -32,10 +32,10 @@ RUN service mysql start\
 WORKDIR /usr/share/doc/zabbix-server-mysql
 
 RUN service mysql start && zcat create.sql.gz | mysql -u root zabbixdb
-RUN sed -i '/DBHost=/c\DBHost=localhost' /etc/zabbix/zabbix_server.conf
+RUN sed -i '/DBHost=zabbix/c\DBHost=localhost' /etc/zabbix/zabbix_server.conf
 RUN sed -i '/DBName=zabbix/c\DBName=zabbixdb' /etc/zabbix/zabbix_server.conf
-RUN sed -i '/DBUser=/c\DBUser=zabbix' /etc/zabbix/zabbix_server.conf
-RUN sed -i '/DBPassword=/c\DBPassword=password' /etc/zabbix/zabbix_server.conf
+RUN sed -i '/DBUser=zabbix/c\DBUser=zabbix' /etc/zabbix/zabbix_server.conf
+RUN sed -i '/DBPassword=password/c\DBPassword=password' /etc/zabbix/zabbix_server.conf
 
 EXPOSE 80:80
 
