@@ -13,7 +13,7 @@ RUN wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zab
 RUN dpkg -i zabbix-release_3.0-1+trusty_all.deb
 RUN apt-get install -y zabbix-agent
 
-RUN sed -i '/Server=127/c\Server=52.212.188.209' /etc/zabbix/zabbix_agentd.conf
+RUN sed -i '/Server=127/c\Server=52.213.34.225' /etc/zabbix/zabbix_agentd.conf
 
 RUN apt-get update
 
@@ -25,7 +25,7 @@ RUN service apache2 restart
 
 RUN wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-1+trusty_all.deb
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y zabbix-server-mysql zabbix-frontend-php
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server mysql-client zabbix-server-mysql zabbix-frontend-php
 
 RUN service mysql start\
 && mysql -u root -e "create user 'zabbix';"\
