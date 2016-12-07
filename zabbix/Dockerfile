@@ -7,7 +7,7 @@ RUN apt-get update
 RUN apt-get install -y wget
 
 # installing apache
-RUN apt-get install apache2
+RUN apt-get install -y apache2
 
 # getting the download
 RUN wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-1+trusty_all.deb
