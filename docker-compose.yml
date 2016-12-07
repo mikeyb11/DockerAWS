@@ -3,12 +3,16 @@
 #services:
  java7:
   build: ./java7
+  tty: true
 #  
 #  java8:
 #  build: ./java8
 #  
  maven:
   build: ./maven
+  links:
+   - java7
+  tty: true
 #  
  jenkins:
   build: ./jenkins/
