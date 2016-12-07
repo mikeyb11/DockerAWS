@@ -15,7 +15,7 @@
   ports: 
     - "8080:8080"
   links:
-    - java
+    - java7
     - maven
   tty: true
 #
@@ -24,7 +24,7 @@
   ports: 
    - "8081:8081"
   links:
-    - java
+    - java7
   tty: true
 #	 
 # nexus:
