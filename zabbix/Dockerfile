@@ -6,10 +6,8 @@ MAINTAINER MikeyB
 RUN apt-get update
 RUN apt-get install -y wget
 
-# installing apache
 RUN apt-get install -y apache2
 
-# getting the download
 RUN wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-1+trusty_all.deb
 
 RUN dpkg -i zabbix-release_3.0-1+trusty_all.deb
@@ -20,6 +18,8 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php7.0 libapache2-mod-php7.0
 
 RUN sed -i '/date.timezone =/c\date.timezone = Europe/London' /etc/php/7.0/apache2/php.ini
+
+RUN service apache2 restart
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y zabbix-server-mysql zabbix-frontend-php
 
