@@ -1,10 +1,11 @@
 # java dockerfile
-FROM ubuntu
+FROM ubuntu:16.04
 USER root
 MAINTAINER MikeyB
 
 WORKDIR /opt/
 RUN apt-get update
+RUN apt-get install -f
 RUN apt-get install -y wget
 
 RUN  wget --no-cookies \

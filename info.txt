@@ -6,7 +6,7 @@ remove all images
 
 todays ip
 
-		52.213.34.225
+		52.18.73.201
 
 -jenkins
 -jira

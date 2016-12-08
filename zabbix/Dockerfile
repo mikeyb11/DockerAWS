@@ -1,6 +1,5 @@
 # zabbix dockerfile
 FROM ubuntu
-USER root
 MAINTAINER MikeyB
 
 RUN apt-get update

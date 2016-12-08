@@ -1,5 +1,5 @@
 # jira dockerfile
-FROM ubuntu:java8
+FROM java8
 MAINTAINER MikeyB
 
 RUN apt-get update

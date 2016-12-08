@@ -1,6 +1,5 @@
 # jenkins dockerfile
-FROM ubuntu:java8
-USER root
+FROM java8
 MAINTAINER MikeyB
 
 RUN apt-get update
