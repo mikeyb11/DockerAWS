@@ -19,8 +19,8 @@ WORKDIR /opt/tomcat
 RUN chgrp -R tomcat /opt/tomcat
 
 # give tomcat group read access to conf file, and excute access to dir itself
-RUN chmod -R g+r conf
-RUN chmod g+x conf
+#RUN chmod -R g+r conf
+#RUN chmod g+x conf
 
 # make tomcat owner of 
 RUN chown -R tomcat webapps/ work/ temp/ logs/
