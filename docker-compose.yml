@@ -6,7 +6,8 @@
   tty: true
 
  jenkins:
-  build: ./jenkins/
+  build:
+   context: https://github.com/mikeyb11/DockerAWS/blob/master/jenkins/Dockerfile
   ports: 
     - "8080:8080"
   tty: true
