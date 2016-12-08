@@ -10,15 +10,21 @@
   ports: 
     - "8080:8080"
   tty: true
+  links:
+   - java8
 
  jira:
   build: ./jira/
   ports: 
    - "8081:8081"
   tty: true
+  links:
+   - java8
   
  nexus:
   build: ./nexus/
   ports: 
    - "8082:8081" 
   tty: true
+  links:
+   - java8
