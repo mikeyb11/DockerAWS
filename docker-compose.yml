@@ -29,7 +29,7 @@
   links:
    - java8
    
-  zabbix:
+ zabbix:
   build: ./zabbix/
   ports: 
    - "80:80" 
