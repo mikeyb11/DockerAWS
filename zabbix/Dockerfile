@@ -29,7 +29,7 @@ RUN service mysql start\
 
 WORKDIR /usr/share/doc/zabbix-server-mysql
 
-RUN service mysql start && zcat create.sql.gz | mysql -u root zabbixdb
+RUN service mysql start && zcat create.sql.gz | mysql zabbixdb -u root -proot 
 RUN sed -i '/DBHost=zabbix/c\DBHost=localhost' /etc/zabbix/zabbix_server.conf
 RUN sed -i '/DBName=zabbix/c\DBName=zabbixdb' /etc/zabbix/zabbix_server.conf
 RUN sed -i '/DBUser=root/c\DBUser=zabbix' /etc/zabbix/zabbix_server.conf
