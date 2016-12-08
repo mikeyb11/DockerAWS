@@ -22,7 +22,6 @@ RUN apt-get update
 RUN apt-get install -q -y zabbix-server-mysql zabbix-frontend-php
 
 RUN service mysql start\
-
 && mysql -u root -proot -e "create database zabbixdb character set utf8 collate utf8_bin;"\
 && mysql -u root -proot -e "create user 'zabbix'@'%' identified by 'qwerty';"\
 && mysql -u root -proot -e "grant all privileges on zabbixdb.* to 'zabbix'@'%';"\

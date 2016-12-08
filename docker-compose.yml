@@ -28,3 +28,9 @@
   tty: true
   links:
    - java8
+   
+ zabbix:
+  build: ./zabbix/
+  ports: 
+   - "80:80" 
+  tty: true

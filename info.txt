@@ -11,7 +11,8 @@ todays ip
 -jenkins
 -jira
 -nexus
-zabbix
+-zabbix
+ - need to get zabbix server running
 tomcat
 postfix
 urbanCode-deploy

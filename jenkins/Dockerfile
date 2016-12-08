@@ -4,7 +4,6 @@ MAINTAINER MikeyB
 
 RUN apt-get update
 RUN apt-get install -y wget
-RUN apt-get install -f
 
 WORKDIR /opt/
 
