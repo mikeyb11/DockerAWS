@@ -22,9 +22,9 @@ RUN apt-get update
 RUN apt-get install -q -y zabbix-server-mysql zabbix-frontend-php
 
 RUN service mysql start\
-&& mysql -u root -proot create database zabbixdb;\
+&& mysql -u root -proot "create database zabbixdb;"\
 && mysql -u root -proot "create user 'zabbix';"\
-&& mysql -u root -proot "grant all privileges on zabbixdb.* to zabbix@localhost identified by 'password';"\
+&& mysql -u root -proot "grant all privileges on zabbixdb.* to zabbix@localhost identified by 'root';"\
 && mysql -u root -proot "flush privileges;"
 
 WORKDIR /usr/share/doc/zabbix-server-mysql
