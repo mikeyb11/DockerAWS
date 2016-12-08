@@ -1,5 +1,5 @@
 # jira dockerfile
-FROM java8
+FROM dockeraws_java8
 MAINTAINER MikeyB
 
 RUN apt-get update

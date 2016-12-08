@@ -1,5 +1,5 @@
 # nexus dockerfile
-FROM java8
+FROM dockeraws_java8
 MAINTAINER MikeyB
 
 WORKDIR /opt/
