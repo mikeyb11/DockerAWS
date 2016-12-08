@@ -32,8 +32,8 @@ WORKDIR /usr/share/doc/zabbix-server-mysql
 RUN service mysql start && zcat create.sql.gz | mysql zabbixdb -u root -proot 
 RUN sed -i '/DBHost=localhost/c\DBHost=localhost' /etc/zabbix/zabbix_server.conf
 RUN sed -i '/DBName=zabbix/c\DBName=zabbixdb' /etc/zabbix/zabbix_server.conf
-RUN sed -i '/DBUser=root/c\DBUser=zabbix' /etc/zabbix/zabbix_server.conf
-RUN sed -i '/DBPassword=password/c\DBPassword=password' /etc/zabbix/zabbix_server.conf
+RUN sed -i '/DBUser=zabbix/c\DBUser=zabbix' /etc/zabbix/zabbix_server.conf
+RUN sed -i '/DBPassword=qwerty/c\DBPassword=qwerty' /etc/zabbix/zabbix_server.conf
 RUN sed -i '/DBPort=3306/c\DBPort=3306' /etc/zabbix/zabbix_server.conf
 
 RUN service apache2 restart && service zabbix-server restart 
