@@ -1,5 +1,5 @@
 # java dockerfile
-FROM ubuntu
+FROM ubuntu:16.04
 USER root
 MAINTAINER MikeyB
 
