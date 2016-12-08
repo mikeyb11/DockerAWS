@@ -37,7 +37,7 @@ RUN sed -i '/DBUser=zabbix/c\DBUser=zabbix' /etc/zabbix/zabbix_server.conf
 RUN sed -i '/DBPassword=root/c\DBPassword=root' /etc/zabbix/zabbix_server.conf
 RUN sed -i '/DBPort=3306/c\DBPort=3306' /etc/zabbix/zabbix_server.conf
 
-RUN service apache2 restart && service zabbix-server restart 
+RUN service apache2 restart && service zabbix-server restart && service mysql restart
 
 EXPOSE 80:80
 
