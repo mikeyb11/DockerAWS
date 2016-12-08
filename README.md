@@ -13,6 +13,7 @@ Use these in browser to access
   nexus -- ip:8082
 
   zabbix -- ip/zabbix
+  
     Login credentials are;
       Database type	      -- MySQL
       Database server	    -- localhost
