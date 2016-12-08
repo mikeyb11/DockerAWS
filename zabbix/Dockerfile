@@ -12,7 +12,7 @@ RUN echo 'mysql-server mysql-server/root_password_again password root' | debconf
 
 RUN apt-get install -y mysql-server
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php7.0 libapache2-mod-php7.0 php7.0-cli php7.0-common
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php7.0 libapache2-mod-php7.0 php7.0-cli php7.0-common php7.0-bcmath php7.0-xml php7.0-mbstring
 
 RUN sed -i '/date.timezone =/c\date.timezone = Europe/London' /etc/php/7.0/apache2/php.ini
 
