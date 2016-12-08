@@ -23,7 +23,7 @@ RUN chgrp -R tomcat /opt/tomcat
 #RUN chmod g+x conf
 
 # make tomcat owner of 
-RUN chown -R tomcat webapps/ work/ temp/ logs/
+#RUN chown -R tomcat webapps/ work/ temp/ logs/
 
 # set the java home
 RUN sed -i '/Environment=JAVA_HOME=/c\Environment=JAVA_HOME=/opt/jdk1.8.0_111/bin/java' /etc/systemd/system/tomcat.service
