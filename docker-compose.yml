@@ -1,6 +1,10 @@
 #version: '2'
 
 #services:
+ java8:
+  build: ./java8/
+  tty: true
+
  jenkins:
   build: ./jenkins/
   ports: 
@@ -8,13 +12,13 @@
   tty: true
 
  jira:
-  build: ./jira
+  build: ./jira/
   ports: 
    - "8081:8081"
   tty: true
   
  nexus:
-  build: ./nexus
+  build: ./nexus/
   ports: 
    - "8082:8081" 
   tty: true
