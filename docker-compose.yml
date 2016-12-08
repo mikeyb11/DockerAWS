@@ -6,8 +6,7 @@
   tty: true
 
  jenkins:
-  build:
-   context: https://github.com/mikeyb11/DockerAWS/blob/master/jenkins/Dockerfile
+  build: ./jenkins/
   ports: 
     - "8080:8080"
   tty: true
@@ -29,3 +28,9 @@
   tty: true
   links:
    - java8
+   
+  zabbix:
+  build: ./zabbix/
+  ports: 
+   - "80:80" 
+  tty: true
