@@ -1,5 +1,5 @@
 # jenkins dockerfile
-FROM ubuntu:16.04
+FROM ubuntu:java8
 USER root
 MAINTAINER MikeyB
 
