@@ -41,4 +41,4 @@ RUN service apache2 restart && service zabbix-server restart
 
 EXPOSE 80:80
 
-ENTRYPOINT service apache2 start && service zabbix-server start && bash
+ENTRYPOINT service apache2 start && service zabbix-server start && service mysql start && bash
