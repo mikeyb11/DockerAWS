@@ -9,7 +9,7 @@ WORKDIR /opt/
 RUN groupadd tomcat
 RUN useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 
-RUN wget http://apache.mirrors.ionfish.org/tomcat/tomcat-8/v8.5.5/bin/apache-tomcat-8.5.5.tar.gz
+RUN wget http://mirrors.ukfast.co.uk/sites/ftp.apache.org/tomcat/tomcat-8/v8.5.8/src/apache-tomcat-8.5.8-src.tar.gz
 
 RUN tar xzvf apache-tomcat-8*tar.gz
 
