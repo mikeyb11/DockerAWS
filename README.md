@@ -2,6 +2,7 @@
 
 How to start and access Docker containers created in the DevOps project
 To run all containers do;
+
   sudo docker-compose up
 
 Use these in browser to access
