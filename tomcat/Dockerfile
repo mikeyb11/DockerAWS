@@ -38,4 +38,4 @@ RUN systemctl status tomcat
 RUN ufw allow 8083
 
 # run service
-RUN systemctl enable tomcat
+ENTRYPOINT systemctl enable tomcat && bash
