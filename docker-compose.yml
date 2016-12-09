@@ -1,6 +1,6 @@
-version: '2'
+#version: '2'
 
-services:
+#services:
  java8:
   build: ./java8/
   tty: true
