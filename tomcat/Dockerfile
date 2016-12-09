@@ -13,14 +13,14 @@ RUN wget http://mirrors.ukfast.co.uk/sites/ftp.apache.org/tomcat/tomcat-8/v8.5.8
 
 RUN tar -xzvf apache-tomcat-8*tar.gz
 # renames to tomcat
-RUN mv apache-tomcat-8* tomcat
+//RUN mv apache-tomcat-8* tomcat
 
 #change ownership to tomcat user
 RUN chown -hR tomcat:tomcat tomcat
 # make all files in bin executable
-RUN chmod +x /opt/tomcat/bin/*
+RUN chmod +x /opt/apache-tomcat-8*/bin/*
 
-WORKDIR /opt/tomcat
+WORKDIR /opt/apache-tomcat-8*
 
 # set the java home
 #RUN sed -i '/Environment=JAVA_HOME=/c\Environment=JAVA_HOME=/opt/jdk1.8.0_111/bin/java' #/etc/systemd/system/tomcat.service
