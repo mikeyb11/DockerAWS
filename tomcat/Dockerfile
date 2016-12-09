@@ -16,7 +16,7 @@ RUN tar -xzvf apache-tomcat-8*tar.gz
 #RUN mv apache-tomcat-8* tomcat
 
 #change ownership to tomcat user
-RUN chown -hR apache-tomcat-8*:tomcat tomcat
+RUN chown -hR tomcat:apache-tomcat-8* tomcat
 # make all files in bin executable
 RUN chmod +x /opt/apache-tomcat-8*/bin/*
 
