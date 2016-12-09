@@ -15,7 +15,7 @@ RUN useradd -s /sbin/nologin -d /opt/tomcat/temp tomcat
 RUN chown -R tomcat:tomcat apache-tomcat-8*
 RUN chmod -R 755 apache-tomcat-8*
 
-RUN echo "export JAVA_HOME=/opt/jdk1.8.0_112" >> /etc/profile
+RUN echo "export JAVA_HOME=/opt/jdk1.8.0_111/bin/java" >> /etc/profile
 
 WORKDIR /opt/apache-tomcat-8*/bin/
 RUN chmod uga+x *.sh
