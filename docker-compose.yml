@@ -4,6 +4,8 @@ services:
  java8:
   build: ./java8/
   tty: true
+  environment:
+    COMPOSE_HTTP_TIMEOUT: 200
 
  jenkins:
   build: ./jenkins/
@@ -12,6 +14,8 @@ services:
   tty: true
   links:
    - java8
+  environment:
+   COMPOSE_HTTP_TIMEOUT: 200
 
  jira:
   build: ./jira/
@@ -20,6 +24,8 @@ services:
   tty: true
   links:
    - java8
+  environment:
+    COMPOSE_HTTP_TIMEOUT: 200
   
  nexus:
   build: ./nexus/
@@ -28,9 +34,13 @@ services:
   tty: true
   links:
    - java8
+  environment:
+    COMPOSE_HTTP_TIMEOUT: 200
    
  zabbix:
   build: ./zabbix/
   ports: 
    - "80:80" 
   tty: true
+  environment:
+    COMPOSE_HTTP_TIMEOUT: 200
