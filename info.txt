@@ -1,9 +1,9 @@
 remove containers
-	sudo docker rm -v $(sudo docker ps -a -q -f status=exited)
-	sudo docker rm -v $(sudo docker ps -a -q)
+	sudo docker rm -v -f $(sudo docker ps -a -q -f status=exited)
+	sudo docker rm -v -f $(sudo docker ps -a -q)
 
 remove all images
-	sudo docker rmi $(sudo docker images -q)
+	sudo docker rmi -f $(sudo docker images -q)
 
 todays ip
 
