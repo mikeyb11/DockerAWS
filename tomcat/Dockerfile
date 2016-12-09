@@ -6,13 +6,12 @@ RUN apt-get update
 RUN apt-get install -y wget
 WORKDIR /opt/
 
-### download and extract TomCat tarball
+#install tomcat
 RUN wget http://mirror.catn.com/pub/apache/tomcat/tomcat-8/v8.5.8/bin/apache-tomcat-8.5.8.tar.gz
 RUN tar zxvf apache-tomcat-8*.tar.gz
 
-### set up a tomcat user
+#make a tomcat user
 RUN useradd -s /sbin/nologin -d /opt/tomcat/temp tomcat
-#WORKDIR /opt/tomcat
 RUN chown -R tomcat:tomcat apache-tomcat-8*
 RUN chmod -R 755 apache-tomcat-8*
 
@@ -20,4 +19,5 @@ RUN echo "export JAVA_HOME=/opt/jdk1.8.0_112" >> /etc/profile
 
 WORKDIR /opt/apache-tomcat-8*/bin/
 RUN chmod uga+x *.sh
+
 ENTRYPOINT ./startup.sh && bash
