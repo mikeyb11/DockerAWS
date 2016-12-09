@@ -10,8 +10,8 @@ WORKDIR /opt/
 RUN wget http://mirror.catn.com/pub/apache/tomcat/tomcat-8/v8.5.8/bin/apache-tomcat-8.5.8.tar.gz
 RUN tar zxvf apache-tomcat-8*.tar.gz
 
-#make a tomcat user, set it as the owner and give root permission
-RUN useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+#make a tomcat group and user, set it as the owner and give root permission
+RUN groupadd tomcat && useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 RUN chown -R tomcat:tomcat apache-tomcat-8*
 RUN chmod -R 755 apache-tomcat-8*
 
