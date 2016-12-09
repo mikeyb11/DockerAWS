@@ -9,18 +9,16 @@ WORKDIR /opt/
 RUN groupadd tomcat
 RUN useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 
-RUN wget http://mirrors.ukfast.co.uk/sites/ftp.apache.org/tomcat/tomcat-8/v8.5.8/src/apache-tomcat-8.5.8-src.tar.gz
+RUN curl -O http://mirrors.ukfast.co.uk/sites/ftp.apache.org/tomcat/tomcat-8/v8.5.8/src/apache-tomcat-8.5.8-src.tar.gz
 
-RUN tar -xzvf apache-tomcat-8*tar.gz
-# renames to tomcat
-#RUN mv apache-tomcat-8* tomcat
+RUN mkdir /opt/tomcat
 
-#change ownership to tomcat user
-RUN chown -hR apache-tomcat-8*:tomcat tomcat
-# make all files in bin executable
-RUN chmod +x /opt/apache-tomcat-8*/bin/*
+RUN tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
 
-WORKDIR /opt/apache-tomcat-8*
+WORKDIR /opt/tomcat
+
+## give ownership
+RUN chgrp -R tomcat /opt/tomcat
 
 # set the java home
 #RUN sed -i '/Environment=JAVA_HOME=/c\Environment=JAVA_HOME=/opt/jdk1.8.0_111/bin/java' #/etc/systemd/system/tomcat.service
