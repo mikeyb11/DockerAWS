@@ -13,7 +13,7 @@ RUN wget http://mirrors.ukfast.co.uk/sites/ftp.apache.org/tomcat/tomcat-8/v8.5.8
 
 RUN tar -xzvf apache-tomcat-8*tar.gz
 # renames to tomcat
-//RUN mv apache-tomcat-8* tomcat
+RUN mv apache-tomcat-8* tomcat
 
 #change ownership to tomcat user
 RUN chown -hR tomcat:tomcat tomcat
