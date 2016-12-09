@@ -17,7 +17,7 @@ RUN chmod -R 755 apache-tomcat-8*
 
 RUN echo "export JAVA_HOME=/opt/jdk1.8.0_111/bin/java" >> /etc/profile
 
-WORKDIR /opt/apache-tomcat-8*/bin/
-RUN chmod uga+x *.sh
+#WORKDIR /opt/apache-tomcat-8*/bin/
+#RUN chmod uga+x *.sh
 
 ENTRYPOINT ./startup.sh && bash
