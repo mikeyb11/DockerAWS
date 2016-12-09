@@ -8,12 +8,4 @@ remove all images
 todays ip
 
 		52.209.103.149
-
-items installed 
-	-jenkins
-	-jira
-	-nexus
-	-zabbix
-	 - need to get zabbix server running
-	-tomcat
 	
