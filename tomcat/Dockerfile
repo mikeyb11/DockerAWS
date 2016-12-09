@@ -2,39 +2,24 @@
 FROM dockeraws_java8
 MAINTAINER MikeyB
 
+RUN apt-get update
 RUN apt-get install -y wget
-
-RUN apt-get install -y curl
-
 WORKDIR /opt/
 
-RUN groupadd tomcat
-RUN useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+#install tomcat
+RUN wget http://mirror.catn.com/pub/apache/tomcat/tomcat-8/v8.5.8/bin/apache-tomcat-8.5.8.tar.gz
+RUN tar zxvf apache-tomcat-8*.tar.gz
 
-RUN curl -O http://mirrors.ukfast.co.uk/sites/ftp.apache.org/tomcat/tomcat-8/v8.5.8/src/apache-tomcat-8.5.8-src.tar.gz
+#make a tomcat group and user, set it as the owner and give root permission
+RUN groupadd tomcat && useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+RUN chown -R tomcat:tomcat apache-tomcat-8*
+RUN chmod -R 755 apache-tomcat-8*
 
-RUN mkdir /opt/tomcat
+RUN echo "export JAVA_HOME=/opt/jdk1.8.0_111/bin/java" >> /etc/profile
 
-RUN tar xzvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
-
-WORKDIR /opt/tomcat
-
-## give ownership
-RUN chgrp -R tomcat /opt/tomcat
-
-# set the java home
-#RUN sed -i '/Environment=JAVA_HOME=/c\Environment=JAVA_HOME=/opt/jdk1.8.0_111/bin/java' #/etc/systemd/system/tomcat.service
-
-# reset the systemd
-RUN systemctl daemon-reload
-
-# start the tomcat service 
-RUN systemctl start tomcat
-
-# set the port
-RUN ufw allow 8083
+# tomcat is now the owner of the directory
+RUN chgrp -R tomcat /opt/apache-tomcat-8*
 
 EXPOSE 8083
 
-# run service
-ENTRYPOINT systemctl enable tomcat && bash
+ENTRYPOINT /opt/apache-tomcat-8*/bin/startup.sh && bash
