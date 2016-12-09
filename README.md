@@ -5,10 +5,11 @@ To run all containers do;
   sudo docker-compose up
   
 Use these in browser to access
-  jenkins -- ip:8080
-  jira -- ip:8081
-  nexus -- ip:8082
-  zabbix -- ip/zabbix
+  jenkins 	-- ip:8080
+  jira 		-- ip:8081
+  nexus 	-- ip:8082
+  tomcat 	-- ip:8083
+  zabbix 	-- ip/zabbix
     Login credentials are;
       Database type	      -- MySQL
       Database server	  -- localhost
@@ -23,3 +24,4 @@ Use these in browser to access
 
       Username -- Admin
       Password -- zabbix
+	  
