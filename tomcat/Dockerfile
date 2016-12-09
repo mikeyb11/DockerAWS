@@ -20,8 +20,6 @@ RUN echo "export JAVA_HOME=/opt/jdk1.8.0_111/bin/java" >> /etc/profile
 # tomcat is now the owner of the directory
 RUN chgrp -R tomcat /opt/apache-tomcat-8*
 
-WORKDIR /opt/apache-tomcat-8*/bin/
-
 EXPOSE 8083
 
-ENTRYPOINT ./startup.sh && bash
+ENTRYPOINT /opt/apache-tomcat-8*/bin/startup.sh && bash
