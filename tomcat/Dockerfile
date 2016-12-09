@@ -4,6 +4,8 @@ MAINTAINER MikeyB
 
 RUN apt-get install -y wget
 
+RUN apt-get install -y curl
+
 WORKDIR /opt/
 
 RUN groupadd tomcat
