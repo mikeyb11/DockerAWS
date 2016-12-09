@@ -14,9 +14,6 @@ todays ip
 -nexus
 -zabbix
  - need to get zabbix server running
-tomcat
+-tomcat
 postfix
 urbanCode-deploy
-
-docker-compose
-	look at updating it to use version 2
