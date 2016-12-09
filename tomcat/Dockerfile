@@ -24,10 +24,10 @@ RUN chgrp -R tomcat /opt/tomcat
 #RUN sed -i '/Environment=JAVA_HOME=/c\Environment=JAVA_HOME=/opt/jdk1.8.0_111/bin/java' #/etc/systemd/system/tomcat.service
 
 # reset the systemd
-RUN service systemctl daemon-reload
+RUN systemctl daemon-reload
 
 # start the tomcat service 
-RUN service systemctl start tomcat
+RUN systemctl start tomcat
 
 # set the port
 RUN ufw allow 8083
@@ -35,4 +35,4 @@ RUN ufw allow 8083
 EXPOSE 8083
 
 # run service
-ENTRYPOINT service systemctl enable tomcat && bash
+ENTRYPOINT systemctl enable tomcat && bash
