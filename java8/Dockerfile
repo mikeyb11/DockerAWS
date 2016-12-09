@@ -18,4 +18,5 @@ RUN tar zxvf jdk-8u111-linux-x64.tar.gz
 RUN update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_111/bin/java 100
 RUN update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_111/bin/javac 100
 
+# setting the enviroment var
 RUN export JAVA_HOME=/opt/jdk1.8.0_111/bin/java

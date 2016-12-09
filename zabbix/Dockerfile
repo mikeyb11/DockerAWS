@@ -7,13 +7,16 @@ RUN apt-get install -y wget
 
 RUN apt-get install -y apache2
 
+# setting the mysql password -- needed for user input part of install
 RUN echo 'mysql-server mysql-server/root_password password root' | debconf-set-selections
 RUN echo 'mysql-server mysql-server/root_password_again password root' | debconf-set-selections
 
 RUN apt-get install -y mysql-server
 
+# php decencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php7.0 libapache2-mod-php7.0 php7.0-cli php7.0-common php7.0-bcmath php7.0-xml php7.0-mbstring
 
+# setting the timezone
 RUN sed -i '/date.timezone =/c\date.timezone = Europe/London' /etc/php/7.0/apache2/php.ini
 
 RUN wget http://repo.zabbix.com/zabbix/3.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.2-1+xenial_all.deb
@@ -21,6 +24,7 @@ RUN dpkg -i zabbix-release_3.2-1+xenial_all.deb
 RUN apt-get update
 RUN apt-get install -q -y zabbix-server-mysql zabbix-frontend-php
 
+# setting up the mysql database account
 RUN service mysql start\
 && mysql -u root -proot -e "create database zabbixdb character set utf8 collate utf8_bin;"\
 && mysql -u root -proot -e "create user 'zabbix'@'%' identified by 'qwerty';"\
@@ -29,6 +33,7 @@ RUN service mysql start\
 
 WORKDIR /usr/share/doc/zabbix-server-mysql
 
+# setting up the zabbix database account
 RUN service mysql start && zcat create.sql.gz | mysql zabbixdb -u zabbix -pqwerty 
 RUN sed -i '/DBHost=localhost/c\DBHost=localhost' /etc/zabbix/zabbix_server.conf
 RUN sed -i '/DBName=zabbixdb/c\DBName=zabbixdb' /etc/zabbix/zabbix_server.conf

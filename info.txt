@@ -16,3 +16,17 @@ items installed
 	-zabbix
 	 - need to get zabbix server running
 	-tomcat
+	
+	
+Programs and decencies
+- jenkins
+	- java
+	
+- jira
+	- java
+
+- nexus
+	- java
+	
+- tomcat
+	- java
