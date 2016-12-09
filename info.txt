@@ -1,12 +1,13 @@
 remove containers
 	sudo docker rm -v $(sudo docker ps -a -q -f status=exited)
+	sudo docker rm -v $(sudo docker ps -a -q)
 
 remove all images
 	sudo docker rmi $(sudo docker images -q)
 
 todays ip
 
-		52.18.73.201
+		52.209.103.149
 
 -jenkins
 -jira
