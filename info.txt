@@ -9,11 +9,10 @@ todays ip
 
 		52.209.103.149
 
--jenkins
--jira
--nexus
--zabbix
- - need to get zabbix server running
--tomcat
-postfix
-urbanCode-deploy
+items installed 
+	-jenkins
+	-jira
+	-nexus
+	-zabbix
+	 - need to get zabbix server running
+	-tomcat
