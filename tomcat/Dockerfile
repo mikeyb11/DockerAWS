@@ -1,5 +1,5 @@
 # tomcat dockerfile
-FROM dockeraws_java8
+FROM ubuntu
 MAINTAINER MikeyB
 
 RUN apt-get update
