@@ -7,5 +7,4 @@ remove all images
 
 todays ip
 
-		52.209.103.149
-	
+		52.209.97.254
