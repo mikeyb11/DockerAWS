@@ -4,6 +4,9 @@ remove containers
 
 remove all images
 	sudo docker rmi -f $(sudo docker images -q)
+	
+stop all containers
+	sudo docker stop $(docker ps -a -q)
 
 todays ip
 
