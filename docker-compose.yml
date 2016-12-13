@@ -21,24 +21,24 @@ services:
   links:
    - java8
   
-# nexus:
-#  build: ./nexus/
-#  ports: 
-#   - "8082:8081" 
-#  tty: true
-#  links:
-#   - java8
-#   
-# zabbix:
-#  build: ./zabbix/
-#  ports: 
-#   - "80:80" 
-#  tty: true
+ nexus:
+  build: ./nexus/
+  ports: 
+   - "8082:8081" 
+  tty: true
+  links:
+   - java8
+   
+ zabbix:
+  build: ./zabbix/
+  ports: 
+   - "80:80" 
+  tty: true
 
-# tomcat:
-#  build: ./tomcat/
-#  ports: 
-#   - "8083:8080" 
-#  tty: true
-#  links:
-#   - java8
+ tomcat:
+  build: ./tomcat/
+  ports: 
+   - "8083:8080" 
+  tty: true
+  links:
+   - java8
